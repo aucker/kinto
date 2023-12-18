@@ -11,30 +11,13 @@ Seamless copy and paste with all apps and terminals. The zero effort solution.
 
 v1.2 Release - Kinto now includes a system tray and simple wizard to setup the install with minimal effort.
 
-Kinto is powered by [xkeysnail](https://github.com/mooz/xkeysnail) for Linux & by [Autohotkey](https://github.com/Lexikos/AutoHotkey_L) for Windows 10 & 11.
+Kinto is powered by [xkeysnail](https://github.com/mooz/xkeysnail) for Linux.
 
 Note: VNC is now experimentally supported on Linux w/ the latest releases, but you must compile & install x11vnc. More info can be [found here](https://gist.github.com/rbreaves/87059f92f030ee4e068f911ddb56a4dd).
 
 ~~Note: If you plan to remote into Linux via VNC, xRDP, Synergy or other remote desktop solutions then remove the current release & try an earlier [v1.0.7-3](https://github.com/rbreaves/kinto/releases/tag/1.0.7-3) release. It uses xkb so it'll work with virtual xinput devices. Some v1.1-x releases may offer both, but all v1.2.x releases ended support for xkb. I do plan to bring offical support back for virtual input devices.~~
 
 ### [Table of Contents ](#Table-of-Contents)
-
-## Donations
-
-If you like or appreciate this project then please consider donating.
-
-|**Wishlists**|[Amazon](https://smile.amazon.com/hz/wishlist/ls/3EVXR21VFKD9Z?ref_=wl_share)|[Adafruit](https://www.adafruit.com/wishlists/515932)|[eBay](https://www.ebay.com/mye/myebay/WatchList?custom_list_id=636668138019)|
-|---|---|---|---|
-
-I have received some really great letters with donations & email. I've also posted some of them with redacted first names to kinto.sh.
-
-Also if you would like to send me a keyboard directly then please reach out to me over [twitter](https://twitter.com/gbit86) and send me a DM.
-
-## How to install (Linux)
-
-Video Tutorial: [Install Kinto.sh for Linux in less than a minute](https://www.youtube.com/watch?v=kd4al45XD1g)
-
-[Linux Requirements](#What-does-Kinto-require)
 
 <img src="https://user-images.githubusercontent.com/10969616/97070698-179c4500-15a0-11eb-8064-c03aa7f4d4a5.png" width="75%">
 
@@ -67,10 +50,6 @@ If the wizard does not appear then either type in "kinto.sh" in your application
 ~/.config/kinto/gui/kinto-gui.py
 ```
 
-**Issues with Numpad?**
-
-Try toggling numlock on & off (clear key on official mac keyboards). If it still does not work then restart the Kinto service and try toggling the numlock/clear key again, it will likely work after that. #369
-
 **Uninstall Kinto**
 
 ```
@@ -92,153 +71,6 @@ https://github.com/rbreaves/betterScale
 
 Use this with autorandr to save your settings as a profile that will auto re-apply when needed.
 
-
-## How to Install (Windows)
-
-Video Tutorial: [How to Install Kinto.sh on Windows 10](https://youtu.be/sRk8A8krz40)
-
-[Windows 10 Requirements](#Kinto-for-Windows-10-Requirements)
-
-### Quick install
-Open Powershell as Administrator and copy and paste the following. This will download & extract Kinto, install chocolatey, python3 and then install Kinto.
-
-**⚠ NOTE: Please inspect https://raw.githubusercontent.com/rbreaves/kinto/master/install/windows.ps1 and https://chocolatey.org/install.ps1 before running scripts directly. More information about running powershell scripts in this context can be found [here](https://chocolatey.org/install).**
-
-```
-Set-ExecutionPolicy Bypass -Scope Process -Force
-iwr https://raw.githubusercontent.com/rbreaves/kinto/master/install/windows.ps1 -UseBasicParsing | iex
-```
-
-
-Update system tray to show Kinto icon at all times (optional)
-```
-cmd /c "explorer shell:::{05d7b0f4-2121-4eff-bf6b-ed3f69b894d9}"
-```
-
-### Old method
-
-1. Open Powershell (Right click and Run as Administrator)
-
-2. clone this repo
-```
-git clone https://github.com/rbreaves/kinto.git
-cd kinto
-```
-3. Install - Select keyboard type
-```
-py setup.py
-```
-
-4. How to make Kinto stay visible in system tray (optional)
-
-<img src="https://user-images.githubusercontent.com/10969616/85195077-2f338c00-b295-11ea-8aa3-e6aa06a9a279.png" width="50%" height="50%">
-<img src="https://user-images.githubusercontent.com/10969616/85195079-30fd4f80-b295-11ea-8bcd-257990b77dcb.png" width="50%" height="50%">
-<img src="https://user-images.githubusercontent.com/10969616/85195082-322e7c80-b295-11ea-8c81-320dab424c3c.png" width="50%" height="50%">
-
-**Uninstall Kinto**
-
-```
-py setup.py
-```
-
-Select Uninstall
-
-## How to use in Remote Desktop Solutions
-
-RDP fully works as long as the entire keyboard input is being captured. RDP had been working for awhile with Windows but as of 2/14/2021 Linux & macOS is now supported. VNC & other protocols may work, but is likely most dependent on how the keyboard input is captured on the computer running the client.
-
-|Program|Src/Remote Client ⇒|Dst/Remote Server|Works? |Notes|
-|---|---|---|---|---|
-|Official MS RDP (mstsc.exe)| ❖Windows ⇒| ❖Windows  | ✅ Yes| Note: Make sure to set all keyboard input to go to remote. |
-|Official MS RDP (mstsc.exe)| ❖Windows ⇒| 🍎macOS  | ✅ Yes| Note: Must compile & install xrdp.   |
-|Official MS RDC from Store| ❖Windows ⇒| ❖Windows  | ✅ Yes| Note: Only when maximized, all modifier keys will not pass in otherwise. |
-|Official MS RDC from Store| ❖Windows ⇒| 🍎macOS  | ✅ Yes| Note: Must compile & install xrdp.   |
-|RealVNC| ❖Windows ⇒| 🐧Linux  | ✅ Yes| Note: Compile & install my forked [x11vnc](https://gist.github.com/rbreaves/87059f92f030ee4e068f911ddb56a4dd) for compatibility. |
-|Official MS RDP (mstsc.exe)| ❖Windows ⇒| 🐧Linux  | ✅ Yes | Note: Compile & install my forked [x11vnc](https://gist.github.com/rbreaves/87059f92f030ee4e068f911ddb56a4dd) for compatibility, then setup xrdp like normal & use xrdp 0.9.18+. |
-|Official MS RDC from Store| ❖Windows ⇒| 🐧Linux  | ✅ Yes | Note: Compile & install my forked [x11vnc](https://gist.github.com/rbreaves/87059f92f030ee4e068f911ddb56a4dd) for compatibility, then setup xrdp like normal & use xrdp 0.9.18+. |
-|Official MS RDP| ChromeOS 87+⇒| ❖Windows  | ✅ Yes|May work on earlier versions as well, if they support Android apps|
-|Remmina| 🐧Linux*/ChromeOS 87+⇒| ❖Windows  | ✅ Yes|*Use hover menu to enable "Grab all keyboard events"|
-|FreeRDP| 🐧Linux/ChromeOS 87+⇒| ❖Windows  | ✅ Yes | |
-|FreeRDP| 🍎macOS⇒| ❖Windows  | ✅ Yes| [FreeRDP for macOS](#FreeRDP-for-macOS)|
-|Remote Desktop Manager Free|🍎iOS⇒| ❖Windows  | ✅ Yes| |
-|Jump Desktop (RDP)| 🍎macOS*/iOS ⇒| ❖Windows  | ✅ Yes|*Preferences -> Keyboard -> Disable "Key Conversions", Enabled "Send macOS Shortcuts" under Keyboard shortcuts|
-|Jump Desktop (VNC)| 🍎macOS⇒| 🐧Linux   | ✅ Yes| Note: Compile & install my forked [x11vnc](https://gist.github.com/rbreaves/87059f92f030ee4e068f911ddb56a4dd) for compatibility & use xrdp 0.9.18+. |
-|RealVNC| 🍎macOS⇒| 🐧Linux   | ✅ Yes| Note: Compile & install my forked [x11vnc](https://gist.github.com/rbreaves/87059f92f030ee4e068f911ddb56a4dd) for compatibility. |
-|Official MS RDP| 🍎macOS⇒| ❖Windows  | ❌ No|Initial Cmd key press not being passed|
-|Remote Desktop Manager Free| 🍎macOS⇒| ❖Windows  | ❌ No|Initial Cmd key press not being passed|
-|Royal TSX Client| 🍎macOS⇒| ❖Windows  | ❌ No|Initial Cmd key press not being passed|
-|Official MS RDP| 🍎🤖iOS/Android⇒| ❖Windows  | ❌ No|No workaround atm|
-
-## How to Remap Windows keyboards for remote access to macOS
-Quick summary - Swap Alt & Win to conform with Apple keyboard layouts. Sharpkeys for Windows, Setkeycodes for Linux, then install Kinto.sh or change/update the Keyboard Type to Apple in the system tray.
-https://benreaves.medium.com/macos-to-linux-back-again-c6151200f4dc
-
-## FreeRDP for macOS
-
-1. Install [brew.sh](https://brew.sh).
-
-```/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"```
-
-2. Install XQuartz (x11/xorg)
-
-```brew install --cask xquartz```
-
-3. log off and back on.
-4. Install FreeRDP
-
-```brew install freerdp```
-
-5. Disable [NLA](https://kb.parallels.com/en/123661), if it is enabled on the destination.
-6. Run command to access machine
-Note: 192.168.x.x = Your IP.
-
-```xfreerdp /u:your_username /v:192.168.x.x /cert-ignore /auto-reconnect-max-retries:0 /f +clipboard -decorations```
-
-7. Click on XQuartz -> Preferences and set these checkmarks so that fullscreen can work, may need to quit it and re-run the xfreerdp command from step 6.
-
-<img src="https://user-images.githubusercontent.com/10969616/108144025-68bfcf80-708e-11eb-96cc-2930b7b1694a.png" width="50%">
-
-More info here
-https://medium.com/idomongodb/macos-rdp-to-a-windows-machine-1e0f52f777b
-
-## Jump Desktop for macOS
-
-Screenshots of how to configure Jump Desktop for macOS users accessing a Windows PC with Kinto installed. I apologize that it is not a free RDP client - BUT it does work, and at $15 it is reasonable if you plan to use it frequently.
-
-<img src="https://user-images.githubusercontent.com/10969616/107990246-a2fb7500-6f99-11eb-8c19-0a9b538b996f.png" width="25%">
-<img src="https://user-images.githubusercontent.com/10969616/107990265-a8f15600-6f99-11eb-9922-bbcfa0b92031.png" width="50%">
-<img src="https://user-images.githubusercontent.com/10969616/107990256-a68efc00-6f99-11eb-9f31-575ed6016944.png" width="50%">
-
-
-## Table of Contents
-
-[How to install (Linux)](#How-to-install-Linux)
-
-[How to install (Windows)](#How-to-install-Windows)
-
-[What does this do exactly?](#What-does-this-do-exactly)
-
-[What's different from other remappers?](#Whats-different)
-
-[What does Kinto require?](#What-does-Kinto-require)
-
-[Shortcut Creation](#Shortcut-Creation)
-
-[How to Upgrade/Control Kinto](#How-to-Upgrade-Kinto)
-
-[Troubleshooting](#Troubleshooting)
-
-[Language Support](#Language-Support)
-
-[Related or Useful Resources](#Related-or-Useful-Resources)
-
-[Contributing](#Contributing)
-
-[More information about Kinto](#More-information-about-Kinto)
-
-[License](#License)
-
-[Credits and Contributions](#Credits-and-Contributions)
 
 ## What does this do exactly?
 
@@ -343,49 +175,6 @@ sudo -E /etc/init.d/kinto restart
 
 More information can be seen on the readme page of [xkeysnail](https://github.com/mooz/xkeysnail).
 
-## Windows (Autohotkey)
-
-This applies to the Windows version of Kinto and how to add additional support for Applications. The configuration file location is `~/.kinto/kinto.ahk` and after updating it you will want to right click on the tray icon and click on setting your keyboard type again and it will re-apply the latest changes.
-
-Windows 10 has a couple of ways that you need to be aware of when trying to add a specific application, the typical method of how to add any exe program, but then there is also the newer UWP app format that some applications use which will require a similar but different method, both will be discussed.
-
-### Defining Keymaps Per App by EXE Name
-You can use the following legend **but** realize that these remaps reference the Virtual keys in the diagrams mentioned near the beginning of this document, so **do not** confuse it with the physical key unless they happen to be the same key.
-
-|Autohotkey Symbol|Virtual key|Description|
-|---|---|---|
-|^,Ctrl|Control|Primary modifier, 1st rock from the spacebar|
-|!,Alt|Alt|Secondary modifier, 2nd rock from the spacebar|
-|#,Win|Win/Super|Tertiary modifier, 3rd rock from the spacebar|
-
-```
-...
-#IfWinActive ahk_exe sublime_text.exe
-    #^Up::send !{O}                                         ; Switch file
-    #^f::send {F11}                                         ; toggle_full_screen
-    ^!v::send {Ctrl Down}k{Ctrl Up}{Ctrl Down}v{Ctrl Up}    ; paste_from_history
-    ...
-#If
-...
-```
-
-With this being Autohotkey you can easily pull knowledge from the Autohotkey forums for just about any issue you may have as well.
-
-### Defining Keymaps Per UWP App
-
-```
-#If WinActive("- OneNote ahk_class ApplicationFrameWindow", "OneNote")
-...
-    ; Add your keymaps here
-...
-#If
-```
-
-I don't have too many examples on this one, most developers seem to be shying away from UWP. Kinto currently supports "Fluent Terminal" which is a UWP app, but it is also being grouped with other Terminal apps for hotkey remapping. You may take a look at that, but you may also want to try creating a new Autohotkey file and use the Window Spy feature built into Autohotkey to help you discover the full name and class names of any application.
-
-## Shortcut Creation (XKB)
-The older xkb shortcut method info can be read about in ticket [#125](https://github.com/rbreaves/kinto/issues/125).
-
 ## How to Upgrade Kinto
 
 Simply bring down the latest then you can re-run the setup.py installer, it will stop the service and re-install Kinto.
@@ -449,22 +238,6 @@ sysvinit
 sudo -E /etc/init.d/kinto restart
 ```
 
-## Troubleshooting
-
-### Installed successfully, but modifier keys are not properly remapped?
-
-Are you using a VM on macOS? If so you may need to disable automatic remapping of the Cmd key when using Vmware Fusion of Parallels.
-
-Disable Parallels Re-mapping:
-1) Open Parallels and go to Preferences.
-2) Click Keyboard and disable the Virtual machine shortcuts.
-3) Close Preferences.
-
-To disable keyboard mapping:
-1) From Fusion's menu bar, click VMware Fusion > Preferences...
-2) Click Keyboard & Mouse.
-3) Click the Key Mappings tab.
-4) Deselect Enable Key Mapping.
 
 ### Does not start when you log in or after you reboot?
 
@@ -501,8 +274,6 @@ Environment=DISPLAY=:0.0
 
 If you continue to have issues then open a ticket and send me the info.
 
-## Language Support
-I'd appreciate any help from people with non-US based keyboards, to help ensure that these keymaps and keyswap methods work in all or most languages.
 
 ## Related or Useful Resources
 
@@ -622,8 +393,6 @@ Vala rewrite of SimplePanel - GitHub mirror (Global Menu for XFCE)
 
 ## Contributing
 
-I welcome any and all contributors who want to add something to this project.
-
 You can read the configuration files and the open issue tickets such as [#44 Shortcut Translation Tables](https://github.com/rbreaves/kinto/issues/44), [#115 Shortcut Creation (xkeysnail)](https://github.com/rbreaves/kinto/issues/115), and [#348 Missing Shortcuts: Post them here](https://github.com/rbreaves/kinto/issues/348) to best understand what's currently happening and how best to contribute.
 
 ## More information about Kinto
@@ -652,7 +421,6 @@ Lastly these four people were also very helpful to me as well. @probonopd for be
 
 I would also like to thank Jonathan Chun for his patience in helping me work through a very difficult problem related to Alt-Tab switching, which led to the current xkeysnail iteration of Kinto for Linux that far exceeds the original xkb implementation. There are also several others that have created issue tickets that have contributed greatly.
 
-If I left anyone out then I apologize, that was not intentional. I am happy to say that this project is at a state of completion. Bug fixes will primarily be the only activity happening going forward and possibly a rewrite for Wayland at some point. Contributions as mentioned above are welcomed, and will be merged into master if they help with the goal of making typing on linux more like a mac.
 
 *https://askubuntu.com/questions/1010276/can-i-act-on-the-event-that-a-window-opens-without-polling
 
